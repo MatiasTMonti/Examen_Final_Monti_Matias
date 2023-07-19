@@ -1287,7 +1287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c4aeb4d10ffd74fbecf4b9b5ec7554, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muteToggle: {fileID: 0}
+  muteToggle: {fileID: 2010050566}
 --- !u!4 &948342864
 Transform:
   m_ObjectHideFlags: 0
