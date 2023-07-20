@@ -18,12 +18,15 @@ public class InputPlayer : MonoBehaviour
 
     private void Update()
     {
-        MoveInput();
-        RotationInput();
+        if (gameObject != null)
+        {
+            MoveInput();
+            RotationInput();
 
-        RotateTurret();
+            RotateTurret();
 
-        Shooting();
+            Shooting();
+        }
     }
 
     private void MoveInput()

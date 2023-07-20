@@ -3,6 +3,7 @@ using UnityEngine;
 public class SphereLogic : MonoBehaviour
 {
     private IMovementStrategy movementStrategy;
+
     [SerializeField] private MovementSphere movementSphere;
 
     [SerializeField] private GameObject tank;
@@ -13,21 +14,20 @@ public class SphereLogic : MonoBehaviour
         if (random == 0)
         {
             movementStrategy = new BouncingSphere();
-            Debug.Log("bounce");
         }
         else
         {
             movementStrategy = new MovementForTank();
-            Debug.Log("move");
         }
             
     }
 
     private void Update()
     {
-        if (movementStrategy != null)
+        if(tank != null)
         {
-            movementStrategy.Move(transform, tank.transform.position, movementSphere.velocity);
+            if (movementStrategy != null)
+                movementStrategy.Move(transform, tank.transform.position, movementSphere.velocity);
         }
     }
 }

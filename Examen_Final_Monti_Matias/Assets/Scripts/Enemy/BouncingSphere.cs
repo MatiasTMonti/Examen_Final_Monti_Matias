@@ -7,10 +7,8 @@ public class BouncingSphere : MonoBehaviour, IMovementStrategy
 
     public void Move(Transform transform, Vector3 targetPosition, float movementSpeed)
     {
-        // Calcula el rebote usando una función senoidal (Mathf.Sin) en el eje Y.
         float yOffset = Mathf.Sin(Time.time * bounceSpeed) * bounceHeight;
 
-        // Utiliza Mathf.PingPong para que la esfera rebote continuamente entre 0 y la altura máxima (bounceHeight).
         yOffset = Mathf.PingPong(yOffset, bounceHeight);
 
         Vector3 newPos = transform.position;
