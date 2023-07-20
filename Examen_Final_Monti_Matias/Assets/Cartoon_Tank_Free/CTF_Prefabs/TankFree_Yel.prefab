@@ -187,7 +187,8 @@ MonoBehaviour:
   movementVelocity: 5
   rotationVelocity: 10
   turret: {fileID: 2461871828900276643}
-  proyectil: {fileID: 9094009511398482965, guid: ebc8ef3e1eaa76c44aacba4e5ec67bf4, type: 3}
+  shootForce: 1000
+  bulletPrefab: {fileID: 9094009511398482965, guid: ebc8ef3e1eaa76c44aacba4e5ec67bf4, type: 3}
 --- !u!1 &1641193759526630708
 GameObject:
   m_ObjectHideFlags: 0
