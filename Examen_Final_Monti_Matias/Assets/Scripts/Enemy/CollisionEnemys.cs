@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class CollisionEnemys : MonoBehaviour
 {
+    [SerializeField] private DestroySphereCount destroySphereCount;
+
     private void OnTriggerEnter(Collider other)
     {
         if (gameObject != null)
@@ -13,6 +15,7 @@ public class CollisionEnemys : MonoBehaviour
 
             if (other.gameObject.CompareTag("Bullet"))
             {
+                destroySphereCount.IncrementSpheresDestroyed();
                 Destroy(gameObject);
             }
         }
