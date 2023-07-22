@@ -10,6 +10,7 @@ public class CountdownTimer : MonoBehaviour
     private bool isTimerRunning = true;
 
     [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private GameObject gameOverScreen;
 
     private void Start()
     {
@@ -48,6 +49,11 @@ public class CountdownTimer : MonoBehaviour
 
     private void GameOver()
     {
-        Debug.Log("Game over");
+        if (gameOverScreen != null)
+        {
+            gameOverScreen.SetActive(true);
+        }
+
+        Time.timeScale = 0f;
     }
 }
