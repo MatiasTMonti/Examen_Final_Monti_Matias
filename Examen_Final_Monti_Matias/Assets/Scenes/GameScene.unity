@@ -1599,7 +1599,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1121261148}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1471165862}
+        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: MenuScene
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1121261148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2135,6 +2147,8 @@ GameObject:
   - component: {fileID: 1471165858}
   - component: {fileID: 1471165859}
   - component: {fileID: 1471165861}
+  - component: {fileID: 1471165862}
+  - component: {fileID: 1471165863}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2186,7 +2200,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalTime: 5
   timerText: {fileID: 1150503206}
-  gameOverScreen: {fileID: 801390866}
 --- !u!114 &1471165859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2200,6 +2213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spheresDestroyed: 0
+  totalSpheresInGame: 1
   counterText: {fileID: 1075871252}
 --- !u!114 &1471165861
 MonoBehaviour:
@@ -2213,6 +2227,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a7738ff4886c0d4fa2ded07cca5bd8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1471165862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471165855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53125ce81a02f0846a75a10a36b714a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1471165863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471165855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1394540fb29026e4191d1dfc46501954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnGameOver:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAllSpheresDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  gameOverScreen: {fileID: 801390866}
 --- !u!1 &1663745080
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,10 +4,13 @@ using TMPro;
 public class DestroySphereCount : MonoBehaviour
 {
     [SerializeField] private int spheresDestroyed = 0;
+    [SerializeField] private int totalSpheresInGame = 1;
     [SerializeField] private TextMeshProUGUI counterText;
+    private GameManager gameManager;
 
     private void Start()
     {
+        gameManager = GetComponent<GameManager>();
         UpdateCounterText();
     }
 
@@ -15,6 +18,11 @@ public class DestroySphereCount : MonoBehaviour
     {
         spheresDestroyed++;
         UpdateCounterText();
+
+        if (spheresDestroyed >= totalSpheresInGame)
+        {
+            gameManager.OnAllSpheresDestroyed.Invoke();
+        }
     }
 
     public int GetSpheresDestroyed()

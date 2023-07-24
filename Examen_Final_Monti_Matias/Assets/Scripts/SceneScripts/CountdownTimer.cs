@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -10,10 +8,11 @@ public class CountdownTimer : MonoBehaviour
     private bool isTimerRunning = true;
 
     [SerializeField] private TextMeshProUGUI timerText;
-    [SerializeField] private GameObject gameOverScreen;
+    private GameManager gameManager;
 
     private void Start()
     {
+        gameManager = GetComponent<GameManager>();
         ResetTimer();
     }
 
@@ -26,7 +25,7 @@ public class CountdownTimer : MonoBehaviour
             if (currentTime <= 0f)
             {
                 currentTime = 0f;
-                GameOver();
+                gameManager.OnGameOver.Invoke();
                 isTimerRunning = false;
             }
 
@@ -45,15 +44,5 @@ public class CountdownTimer : MonoBehaviour
         int minutes = Mathf.FloorToInt(currentTime / 60f);
         int seconds = Mathf.FloorToInt(currentTime % 60f);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-    }
-
-    private void GameOver()
-    {
-        if (gameOverScreen != null)
-        {
-            gameOverScreen.SetActive(true);
-        }
-
-        Time.timeScale = 0f;
     }
 }
