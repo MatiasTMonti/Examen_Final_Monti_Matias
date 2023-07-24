@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public interface IMovementStrategy
+namespace tankDefend
 {
-    void Move(Transform transform, Vector3 targetPosition, float movementSpeed);
+    public interface IMovementStrategy
+    {
+        void Move(Transform transform, Vector3 targetPosition, float movementSpeed);
+    }
 }

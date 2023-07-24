@@ -1,19 +1,22 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneController : MonoBehaviour
+namespace tankDefend
 {
-    public void ChangeScene(string sceneName)
+    public class SceneController : MonoBehaviour
     {
-        SceneManager.LoadScene(sceneName);
-    }
+        public void ChangeScene(string sceneName)
+        {
+            SceneManager.LoadScene(sceneName);
+        }
 
-    public void QuitGame()
-    {
+        public void QuitGame()
+        {
 #if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
 #else
         Application.Quit();
 #endif
+        }
     }
 }

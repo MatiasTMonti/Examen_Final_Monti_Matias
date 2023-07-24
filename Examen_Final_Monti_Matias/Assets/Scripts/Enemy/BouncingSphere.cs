@@ -1,18 +1,21 @@
 using UnityEngine;
 
-public class BouncingSphere : MonoBehaviour, IMovementStrategy
+namespace tankDefend
 {
-    [SerializeField] private float bounceSpeed = 4f;
-    [SerializeField] private float bounceHeight = 2f;
-
-    public void Move(Transform transform, Vector3 targetPosition, float movementSpeed)
+    public class BouncingSphere : MonoBehaviour, IMovementStrategy
     {
-        float yOffset = Mathf.Sin(Time.time * bounceSpeed) * bounceHeight;
+        [SerializeField] private float bounceSpeed = 4f;
+        [SerializeField] private float bounceHeight = 2f;
 
-        yOffset = Mathf.PingPong(yOffset, bounceHeight);
+        public void Move(Transform transform, Vector3 targetPosition, float movementSpeed)
+        {
+            float yOffset = Mathf.Sin(Time.time * bounceSpeed) * bounceHeight;
 
-        Vector3 newPos = transform.position;
-        newPos.y = yOffset;
-        transform.position = newPos;
+            yOffset = Mathf.PingPong(yOffset, bounceHeight);
+
+            Vector3 newPos = transform.position;
+            newPos.y = yOffset;
+            transform.position = newPos;
+        }
     }
 }

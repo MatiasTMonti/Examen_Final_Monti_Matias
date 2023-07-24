@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class MovementForTank : MonoBehaviour, IMovementStrategy
+namespace tankDefend
 {
-    public void Move(Transform transform, Vector3 targetPosition, float movementSpeed)
+    public class MovementForTank : MonoBehaviour, IMovementStrategy
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
+        public void Move(Transform transform, Vector3 targetPosition, float movementSpeed)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, movementSpeed * Time.deltaTime);
+        }
     }
 }

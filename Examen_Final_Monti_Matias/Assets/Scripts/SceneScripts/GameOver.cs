@@ -2,40 +2,43 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 
-public class GameOver : MonoBehaviour
+namespace tankDefend
 {
-    [SerializeField] private TextMeshProUGUI destroyedSpheresText;
-    [SerializeField] private TextMeshProUGUI highscoreText;
-
-    [SerializeField] private HighScoreManager highScoreManager;
-    [SerializeField] private DestroySphereCount destroySphereCount;
-
-    private int destroyedSpheres;
-
-    private void Start()
+    public class GameOver : MonoBehaviour
     {
-        destroyedSpheres = destroySphereCount.GetSpheresDestroyed();
-        destroyedSpheresText.text = "Spheres Destroyed: " + destroyedSpheres;
+        [SerializeField] private TextMeshProUGUI destroyedSpheresText;
+        [SerializeField] private TextMeshProUGUI highscoreText;
 
-        highScoreManager.AddHighscore(destroyedSpheres);
+        [SerializeField] private HighScoreManager highScoreManager;
+        [SerializeField] private DestroySphereCount destroySphereCount;
 
-        ShowHighscores();
-    }
+        private int destroyedSpheres;
 
-    private void ShowHighscores()
-    {
-        if (highScoreManager != null)
+        private void Start()
         {
-            List<int> highscores = highScoreManager.GetHighscores();
+            destroyedSpheres = destroySphereCount.GetSpheresDestroyed();
+            destroyedSpheresText.text = "Spheres Destroyed: " + destroyedSpheres;
 
-            string highscoreString = "Highscores: \n";
+            highScoreManager.AddHighscore(destroyedSpheres);
 
-            for (int i = 0; i < highscores.Count; i++)
+            ShowHighscores();
+        }
+
+        private void ShowHighscores()
+        {
+            if (highScoreManager != null)
             {
-                highscoreString += (i + 1) + ". " + highscores[i] + "\n";
-            }
+                List<int> highscores = highScoreManager.GetHighscores();
 
-            highscoreText.text = highscoreString;
+                string highscoreString = "Highscores: \n";
+
+                for (int i = 0; i < highscores.Count; i++)
+                {
+                    highscoreString += (i + 1) + ". " + highscores[i] + "\n";
+                }
+
+                highscoreText.text = highscoreString;
+            }
         }
     }
 }

@@ -2,53 +2,56 @@ using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
 
-public class HighScoreManager : MonoBehaviour
+namespace tankDefend
 {
-    private string highScoreFile;
-    private List<int> highScores = new List<int>();
-
-    private void OnEnable()
+    public class HighScoreManager : MonoBehaviour
     {
-        highScoreFile = Path.Combine(Application.persistentDataPath, "highScores.txt");
-        LoadHighscores();
-    }
+        private string highScoreFile;
+        private List<int> highScores = new List<int>();
 
-    private void LoadHighscores()
-    {
-        if (File.Exists(highScoreFile))
+        private void OnEnable()
         {
-            string[] lines = File.ReadAllLines(highScoreFile);
+            highScoreFile = Path.Combine(Application.persistentDataPath, "highScores.txt");
+            LoadHighscores();
+        }
 
-            foreach(string line in lines)
+        private void LoadHighscores()
+        {
+            if (File.Exists(highScoreFile))
             {
-                if (int.TryParse(line, out int score))
+                string[] lines = File.ReadAllLines(highScoreFile);
+
+                foreach (string line in lines)
                 {
-                    highScores.Add(score);
+                    if (int.TryParse(line, out int score))
+                    {
+                        highScores.Add(score);
+                    }
                 }
             }
         }
-    }
 
-    private void SaveHighScore()
-    {
-        highScores.Sort((a, b) => b.CompareTo(a));
-
-        while (highScores.Count > 3)
+        private void SaveHighScore()
         {
-            highScores.RemoveAt(highScores.Count - 1);
+            highScores.Sort((a, b) => b.CompareTo(a));
+
+            while (highScores.Count > 3)
+            {
+                highScores.RemoveAt(highScores.Count - 1);
+            }
+
+            File.WriteAllLines(highScoreFile, highScores.ConvertAll(x => x.ToString()).ToArray());
         }
 
-        File.WriteAllLines(highScoreFile, highScores.ConvertAll(x => x.ToString()).ToArray());
-    }
+        public void AddHighscore(int score)
+        {
+            highScores.Add(score);
+            SaveHighScore();
+        }
 
-    public void AddHighscore(int score)
-    {
-        highScores.Add(score);
-        SaveHighScore();
-    }
-
-    public List<int> GetHighscores()
-    {
-        return highScores;
+        public List<int> GetHighscores()
+        {
+            return highScores;
+        }
     }
 }

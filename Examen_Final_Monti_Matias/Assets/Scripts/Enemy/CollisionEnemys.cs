@@ -1,22 +1,25 @@
 using UnityEngine;
 
-public class CollisionEnemys : MonoBehaviour
+namespace tankDefend
 {
-    [SerializeField] private DestroySphereCount destroySphereCount;
-
-    private void OnTriggerEnter(Collider other)
+    public class CollisionEnemys : MonoBehaviour
     {
-        if (gameObject != null)
-        {
-            if (other.gameObject.CompareTag("Tank"))
-            {
-                Destroy(other.gameObject);
-            }
+        [SerializeField] private DestroySphereCount destroySphereCount;
 
-            if (other.gameObject.CompareTag("Bullet"))
+        private void OnTriggerEnter(Collider other)
+        {
+            if (gameObject != null)
             {
-                destroySphereCount.IncrementSpheresDestroyed();
-                Destroy(gameObject);
+                if (other.gameObject.CompareTag("Tank"))
+                {
+                    Destroy(other.gameObject);
+                }
+
+                if (other.gameObject.CompareTag("Bullet"))
+                {
+                    destroySphereCount.IncrementSpheresDestroyed();
+                    Destroy(gameObject);
+                }
             }
         }
     }

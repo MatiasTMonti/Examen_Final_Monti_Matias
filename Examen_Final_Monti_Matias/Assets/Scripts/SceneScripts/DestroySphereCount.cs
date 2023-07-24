@@ -1,37 +1,40 @@
 using UnityEngine;
 using TMPro;
 
-public class DestroySphereCount : MonoBehaviour
+namespace tankDefend
 {
-    [SerializeField] private int spheresDestroyed = 0;
-    [SerializeField] private int totalSpheresInGame = 1;
-    [SerializeField] private TextMeshProUGUI counterText;
-    private GameManager gameManager;
-
-    private void Start()
+    public class DestroySphereCount : MonoBehaviour
     {
-        gameManager = GetComponent<GameManager>();
-        UpdateCounterText();
-    }
+        [SerializeField] private int spheresDestroyed = 0;
+        [SerializeField] private int totalSpheresInGame = 1;
+        [SerializeField] private TextMeshProUGUI counterText;
+        private GameManager gameManager;
 
-    public void IncrementSpheresDestroyed()
-    {
-        spheresDestroyed++;
-        UpdateCounterText();
-
-        if (spheresDestroyed >= totalSpheresInGame)
+        private void Start()
         {
-            gameManager.OnAllSpheresDestroyed.Invoke();
+            gameManager = GetComponent<GameManager>();
+            UpdateCounterText();
         }
-    }
 
-    public int GetSpheresDestroyed()
-    {
-        return spheresDestroyed;
-    }
+        public void IncrementSpheresDestroyed()
+        {
+            spheresDestroyed++;
+            UpdateCounterText();
 
-    private void UpdateCounterText()
-    {
-        counterText.text = "Spheres Destroyed: " + spheresDestroyed;
+            if (spheresDestroyed >= totalSpheresInGame)
+            {
+                gameManager.OnAllSpheresDestroyed.Invoke();
+            }
+        }
+
+        public int GetSpheresDestroyed()
+        {
+            return spheresDestroyed;
+        }
+
+        private void UpdateCounterText()
+        {
+            counterText.text = "Spheres Destroyed: " + spheresDestroyed;
+        }
     }
 }

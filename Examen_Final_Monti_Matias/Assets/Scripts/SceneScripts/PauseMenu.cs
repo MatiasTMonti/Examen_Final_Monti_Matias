@@ -2,71 +2,74 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour
+namespace tankDefend
 {
-    [SerializeField] private GameObject pauseMenuUI;
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private Toggle muteToggle;
-
-    private bool isGamePause = false;
-    private bool isMuted = false;
-    private float savedTimeScale;
-
-    private void Start()
+    public class PauseMenu : MonoBehaviour
     {
-        pauseMenuUI.SetActive(false);
+        [SerializeField] private GameObject pauseMenuUI;
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private Toggle muteToggle;
 
-        isMuted = audioSource.mute;
-        muteToggle.isOn = isMuted;
-    }
+        private bool isGamePause = false;
+        private bool isMuted = false;
+        private float savedTimeScale;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        private void Start()
         {
-            if (isGamePause)
-                ResumeGame();
-            else
-                PauseGame();
+            pauseMenuUI.SetActive(false);
+
+            isMuted = audioSource.mute;
+            muteToggle.isOn = isMuted;
         }
-    }
 
-    public void ResumeGame()
-    {
-        isGamePause = false;
-        Time.timeScale = savedTimeScale;
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (isGamePause)
+                    ResumeGame();
+                else
+                    PauseGame();
+            }
+        }
 
-        pauseMenuUI.SetActive(false);
-    }
+        public void ResumeGame()
+        {
+            isGamePause = false;
+            Time.timeScale = savedTimeScale;
 
-    public void PauseGame()
-    {
-        isGamePause = true;
-        savedTimeScale = Time.timeScale;
-        Time.timeScale = 0f;
+            pauseMenuUI.SetActive(false);
+        }
 
-        pauseMenuUI.SetActive(true);
-    }
+        public void PauseGame()
+        {
+            isGamePause = true;
+            savedTimeScale = Time.timeScale;
+            Time.timeScale = 0f;
 
-    public void LoadMenu()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MenuScene");
-    }
+            pauseMenuUI.SetActive(true);
+        }
 
-    public void ToggleMute()
-    {
-        isMuted = !isMuted;
-        audioSource.mute = isMuted;
+        public void LoadMenu()
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("MenuScene");
+        }
 
-        muteToggle.isOn = isMuted;
-    }
+        public void ToggleMute()
+        {
+            isMuted = !isMuted;
+            audioSource.mute = isMuted;
 
-    public void ToggleMuteFromOptions(bool isMutedFromOptions)
-    {
-        isMuted = isMutedFromOptions;
-        audioSource.mute = isMuted;
+            muteToggle.isOn = isMuted;
+        }
 
-        muteToggle.isOn = isMuted;
+        public void ToggleMuteFromOptions(bool isMutedFromOptions)
+        {
+            isMuted = isMutedFromOptions;
+            audioSource.mute = isMuted;
+
+            muteToggle.isOn = isMuted;
+        }
     }
 }

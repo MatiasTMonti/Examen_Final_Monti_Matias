@@ -2,84 +2,87 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputPlayer : MonoBehaviour
+namespace tankDefend
 {
-    [SerializeField] private float movementVelocity = 5f;
-    [SerializeField] private float rotationVelocity = 10f;
-    [SerializeField] private Transform turret;
-
-    [SerializeField] private float shootForce = 1000f;
-    [SerializeField] private GameObject bulletPrefab;
-
-    private GameObject actualBullet;
-
-    private Vector3 destino;
-    private bool disparar;
-
-    private void Update()
+    public class InputPlayer : MonoBehaviour
     {
-        if (gameObject != null)
+        [SerializeField] private float movementVelocity = 5f;
+        [SerializeField] private float rotationVelocity = 10f;
+        [SerializeField] private Transform turret;
+
+        [SerializeField] private float shootForce = 1000f;
+        [SerializeField] private GameObject bulletPrefab;
+
+        private GameObject actualBullet;
+
+        private Vector3 destino;
+        private bool disparar;
+
+        private void Update()
         {
-            MoveInput();
-            RotationInput();
-
-            RotateTurret();
-
-            Shooting();
-        }
-    }
-
-    private void MoveInput()
-    {
-        float movimientoVertical = Input.GetAxis("Vertical") * movementVelocity * Time.deltaTime;
-        transform.Translate(Vector3.forward * movimientoVertical);
-    }
-
-    private void RotationInput()
-    {
-        float movimientoHorizontal = Input.GetAxis("Horizontal") * rotationVelocity * Time.deltaTime;
-        transform.Rotate(Vector3.up * movimientoHorizontal);
-    }
-
-    private void RotateTurret()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            if (gameObject != null)
             {
-                destino = hit.point;
-                disparar = true;
+                MoveInput();
+                RotationInput();
+
+                RotateTurret();
+
+                Shooting();
+            }
+        }
+
+        private void MoveInput()
+        {
+            float movimientoVertical = Input.GetAxis("Vertical") * movementVelocity * Time.deltaTime;
+            transform.Translate(Vector3.forward * movimientoVertical);
+        }
+
+        private void RotationInput()
+        {
+            float movimientoHorizontal = Input.GetAxis("Horizontal") * rotationVelocity * Time.deltaTime;
+            transform.Rotate(Vector3.up * movimientoHorizontal);
+        }
+
+        private void RotateTurret()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    destino = hit.point;
+                    disparar = true;
+                    Quaternion lookRotation = Quaternion.LookRotation(new Vector3(destino.x - transform.position.x, 0f, destino.z - transform.position.z));
+                    turret.rotation = Quaternion.Lerp(turret.rotation, lookRotation, Time.deltaTime * rotationVelocity);
+                }
+            }
+        }
+
+        private void Shooting()
+        {
+            if (disparar)
+            {
                 Quaternion lookRotation = Quaternion.LookRotation(new Vector3(destino.x - transform.position.x, 0f, destino.z - transform.position.z));
                 turret.rotation = Quaternion.Lerp(turret.rotation, lookRotation, Time.deltaTime * rotationVelocity);
+
+                if (Quaternion.Angle(turret.rotation, lookRotation) < 1f)
+                {
+                    disparar = false;
+                    Shoot();
+                }
             }
         }
-    }
 
-    private void Shooting()
-    {
-        if (disparar)
+        private void Shoot()
         {
-            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(destino.x - transform.position.x, 0f, destino.z - transform.position.z));
-            turret.rotation = Quaternion.Lerp(turret.rotation, lookRotation, Time.deltaTime * rotationVelocity);
-
-            if (Quaternion.Angle(turret.rotation, lookRotation) < 1f)
+            if (actualBullet == null)
             {
-                disparar = false;
-                Shoot();
+                actualBullet = Instantiate(bulletPrefab, turret.position, turret.rotation);
+                Rigidbody rb = actualBullet.GetComponent<Rigidbody>();
+                rb.AddForce(turret.forward * shootForce);
             }
-        }
-    }
-
-    private void Shoot()
-    {
-        if (actualBullet == null)
-        {
-            actualBullet = Instantiate(bulletPrefab, turret.position, turret.rotation);
-            Rigidbody rb = actualBullet.GetComponent<Rigidbody>();
-            rb.AddForce(turret.forward * shootForce);
         }
     }
 }

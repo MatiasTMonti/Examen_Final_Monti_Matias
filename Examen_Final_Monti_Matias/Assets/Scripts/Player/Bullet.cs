@@ -1,12 +1,15 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+namespace tankDefend
 {
-    private void OnCollisionEnter(Collision collision)
+    public class Bullet : MonoBehaviour
     {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Terrain"))
+        private void OnCollisionEnter(Collision collision)
         {
-            Destroy(gameObject);
+            if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Terrain"))
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
