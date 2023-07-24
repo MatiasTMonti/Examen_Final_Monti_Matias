@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnGameOver;
     public UnityEvent OnAllSpheresDestroyed;
     [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private GameObject highScoreMetaData;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     private void ShowGameOverPanel()
     {
         gameOverScreen.SetActive(true);
+        highScoreMetaData.SetActive(true);
         Time.timeScale = 0f;
     }
 }

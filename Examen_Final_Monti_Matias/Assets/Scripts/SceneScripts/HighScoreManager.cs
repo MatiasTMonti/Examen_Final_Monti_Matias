@@ -7,13 +7,9 @@ public class HighScoreManager : MonoBehaviour
     private string highScoreFile;
     private List<int> highScores = new List<int>();
 
-    private void Awake()
+    private void OnEnable()
     {
         highScoreFile = Path.Combine(Application.persistentDataPath, "highScores.txt");
-    }
-
-    private void Start()
-    {
         LoadHighscores();
     }
 
@@ -35,7 +31,7 @@ public class HighScoreManager : MonoBehaviour
 
     private void SaveHighScore()
     {
-        highScores.Sort((a, b) => a.CompareTo(b));
+        highScores.Sort((a, b) => b.CompareTo(a));
 
         while (highScores.Count > 3)
         {

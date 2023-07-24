@@ -1100,7 +1100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyedSpheresText: {fileID: 852726580}
   highscoreText: {fileID: 221224252}
-  highScoreManager: {fileID: 1471165861}
+  highScoreManager: {fileID: 2082643019}
   destroySphereCount: {fileID: 1471165859}
 --- !u!1 &852726578
 GameObject:
@@ -2146,7 +2146,6 @@ GameObject:
   - component: {fileID: 1471165856}
   - component: {fileID: 1471165858}
   - component: {fileID: 1471165859}
-  - component: {fileID: 1471165861}
   - component: {fileID: 1471165862}
   - component: {fileID: 1471165863}
   m_Layer: 0
@@ -2215,18 +2214,6 @@ MonoBehaviour:
   spheresDestroyed: 0
   totalSpheresInGame: 1
   counterText: {fileID: 1075871252}
---- !u!114 &1471165861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1471165855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a7738ff4886c0d4fa2ded07cca5bd8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1471165862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2258,6 +2245,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   gameOverScreen: {fileID: 801390866}
+  highScoreMetaData: {fileID: 2082643018}
 --- !u!1 &1663745080
 GameObject:
   m_ObjectHideFlags: 0
@@ -2881,6 +2869,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2029600144}
   m_CullTransparentMesh: 1
+--- !u!1 &2082643018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2082643020}
+  - component: {fileID: 2082643019}
+  m_Layer: 0
+  m_Name: HighScoreMetaData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &2082643019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082643018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7738ff4886c0d4fa2ded07cca5bd8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2082643020
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082643018}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2107372807
 GameObject:
   m_ObjectHideFlags: 0

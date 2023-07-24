@@ -28,7 +28,6 @@ public class DestroySphereCount : MonoBehaviour
     public int GetSpheresDestroyed()
     {
         return spheresDestroyed;
-
     }
 
     private void UpdateCounterText()
