@@ -45,7 +45,7 @@ public class HighScoreManager : MonoBehaviour
         File.WriteAllLines(highScoreFile, highScores.ConvertAll(x => x.ToString()).ToArray());
     }
 
-    private void AddHighscore(int score)
+    public void AddHighscore(int score)
     {
         highScores.Add(score);
         SaveHighScore();
