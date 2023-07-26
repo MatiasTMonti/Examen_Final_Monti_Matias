@@ -10,8 +10,8 @@ namespace tankDefend
 
         [SerializeField] private Toggle mute;
 
-        private bool isMuted;
-        private float volume;
+        private bool isMuted = false;
+        private float volume = 1.0f;
 
         private void Start()
         {

@@ -2380,10 +2380,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5333745280704179699, guid: ae98f3b2f9fb19e4dba07742ad8d6f4d, type: 3}
-      propertyPath: shootSfx
-      value: 
-      objectReference: {fileID: 1446295598}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae98f3b2f9fb19e4dba07742ad8d6f4d, type: 3}
 --- !u!1 &1446295597
@@ -3766,5 +3762,9 @@ PrefabInstance:
       propertyPath: destroySphereCount
       value: 
       objectReference: {fileID: 1471165859}
+    - target: {fileID: 8295892047537654990, guid: 919d494ecd4e23349b952870c33bb76a, type: 3}
+      propertyPath: impactSphereTankSFX
+      value: 
+      objectReference: {fileID: 689520590}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 919d494ecd4e23349b952870c33bb76a, type: 3}
