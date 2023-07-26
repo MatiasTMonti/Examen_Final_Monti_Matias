@@ -71,6 +71,7 @@ namespace tankDefend
                 {
                     disparar = false;
                     Shoot();
+                    ParticleManager.instance.PlayParticleShoot(transform.position);
                 }
             }
         }

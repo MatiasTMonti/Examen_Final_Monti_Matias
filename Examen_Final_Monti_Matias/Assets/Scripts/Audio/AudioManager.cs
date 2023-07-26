@@ -1,13 +1,16 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace tankDefend
 {
     public class AudioManager : MonoBehaviour
     {
-        public static AudioManager instance;
-
         [SerializeField] private AudioSource musicSource;
-        [SerializeField] private AudioSource[] sfxSources;
+        [SerializeField] private AudioSource buttonClickSFXSource;
+        [SerializeField] private AudioSource shootSFXSource;
+        [SerializeField] private AudioSource loseSFXSource;
+
+        public static AudioManager instance;
 
         private void Awake()
         {
@@ -25,17 +28,19 @@ namespace tankDefend
             musicSource.Play();
         }
 
-        public void PlaySFX(AudioClip sfxClip)
+        public void PlayButtonClickSFX(AudioClip sfxClip)
         {
-            foreach (var sfxSource in sfxSources)
-            {
-                if (!sfxSource.isPlaying)
-                {
-                    sfxSource.clip = sfxClip;
-                    sfxSource.Play();
-                    return;
-                }
-            }
+            buttonClickSFXSource.PlayOneShot(sfxClip);
+        }
+
+        public void PlayShootSFX(AudioClip sfxClip)
+        {
+            shootSFXSource.PlayOneShot(sfxClip);
+        }
+
+        public void PlayLoseSFX(AudioClip sfxClip)
+        {
+            loseSFXSource.PlayOneShot(sfxClip);
         }
 
         public void SetMusicVolume(float volume)
@@ -45,10 +50,9 @@ namespace tankDefend
 
         public void SetSFXVolume(float volume)
         {
-            foreach (var sfxSource in sfxSources)
-            {
-                sfxSource.volume = volume;
-            }
+            buttonClickSFXSource.volume = volume;
+            shootSFXSource.volume = volume;
+            loseSFXSource.volume = volume;
         }
 
         public float GetMusicVolume()
@@ -58,7 +62,7 @@ namespace tankDefend
 
         public float GetSFXVolume()
         {
-            return sfxSources[0].volume;
+            return buttonClickSFXSource.volume;
         }
 
         public void MuteAllAudio(bool isMuted)

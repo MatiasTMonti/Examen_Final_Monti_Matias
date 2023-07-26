@@ -33,5 +33,15 @@ namespace tankDefend
             AudioManager.instance.MuteAllAudio(isMuted);
             AudioSettings.SaveAudioSettings(AudioManager.instance.GetMusicVolume(), AudioManager.instance.GetSFXVolume(), isMuted);
         }
+
+        public void PlayButtonClickSFX(AudioClip sfxClip)
+        {
+            AudioManager.instance.PlayButtonClickSFX(sfxClip);
+        }
+
+        public void PlayLoseSFX(AudioClip sfxClip)
+        {
+            AudioManager.instance.PlayLoseSFX(sfxClip);
+        }
     }
 }
