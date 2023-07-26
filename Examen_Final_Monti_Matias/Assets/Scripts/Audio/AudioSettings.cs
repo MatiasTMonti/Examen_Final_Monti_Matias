@@ -1,33 +1,26 @@
+using System;
 using UnityEngine;
 
 namespace tankDefend
 {
     public class AudioSettings : MonoBehaviour
     {
-        private const string musicVolumeKey = "MusicVolume";
-        private const string sFXVolumeKey = "SFXVolume";
-        private const string isMutedKey = "IsMuted";
+        public Action<float> OnSetAudioSettings;
+        public Action<float> OnReturnAudioSettings;
 
-        public static void SaveAudioSettings(float musicVolume, float sfxVolume, bool isMuted)
+        private void Start()
         {
-            PlayerPrefs.SetFloat(musicVolumeKey, musicVolume);
-            PlayerPrefs.SetFloat(sFXVolumeKey, sfxVolume);
-            PlayerPrefs.SetFloat(isMutedKey, isMuted ? 1 : 0);
+            OnReturnAudioSettings(GetAudioVolume());
+        }
+        public void SetAudioSettings(float volume)
+        {
+            PlayerPrefs.SetFloat("volume", volume);
+            OnSetAudioSettings?.Invoke(volume);
         }
 
-        public static float GetMusicVolume()
+        public float GetAudioVolume()
         {
-            return PlayerPrefs.GetFloat(musicVolumeKey, 1f);
-        }
-
-        public static float GetSFXVolume()
-        {
-            return PlayerPrefs.GetFloat(sFXVolumeKey, 1f);
-        }
-
-        public static bool IsAudioMuted()
-        {
-            return PlayerPrefs.GetInt(isMutedKey, 0) == 1;
+            return PlayerPrefs.GetFloat("volume", 0f);
         }
     }
 }

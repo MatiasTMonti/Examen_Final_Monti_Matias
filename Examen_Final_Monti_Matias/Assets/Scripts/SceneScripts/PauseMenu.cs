@@ -7,19 +7,13 @@ namespace tankDefend
     public class PauseMenu : MonoBehaviour
     {
         [SerializeField] private GameObject pauseMenuUI;
-        [SerializeField] private AudioSource audioSource;
-        [SerializeField] private Toggle muteToggle;
 
         private bool isGamePause = false;
-        private bool isMuted = false;
         private float savedTimeScale;
 
         private void Start()
         {
             pauseMenuUI.SetActive(false);
-
-            isMuted = audioSource.mute;
-            muteToggle.isOn = isMuted;
         }
 
         private void Update()
@@ -54,22 +48,6 @@ namespace tankDefend
         {
             Time.timeScale = 1f;
             SceneManager.LoadScene("MenuScene");
-        }
-
-        public void ToggleMute()
-        {
-            isMuted = !isMuted;
-            audioSource.mute = isMuted;
-
-            muteToggle.isOn = isMuted;
-        }
-
-        public void ToggleMuteFromOptions(bool isMutedFromOptions)
-        {
-            isMuted = isMutedFromOptions;
-            audioSource.mute = isMuted;
-
-            muteToggle.isOn = isMuted;
         }
     }
 }

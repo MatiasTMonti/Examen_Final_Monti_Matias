@@ -1,47 +1,52 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace tankDefend
 {
     public class AudioUI : MonoBehaviour
     {
-        [SerializeField] private Slider musicSlider;
-        [SerializeField] private Slider sfxSlider;
-        [SerializeField] private Toggle muteToggle;
+        public Action<float> OnChangeMuteToggle;
+
+        [SerializeField] private Toggle mute;
+
+        private bool isMuted;
+        private float volume;
 
         private void Start()
         {
-            musicSlider.value = AudioSettings.GetMusicVolume();
-            sfxSlider.value = AudioSettings.GetSFXVolume();
-            muteToggle.isOn = AudioSettings.IsAudioMuted();
+            volume = PlayerPrefs.GetFloat("volume", 1f);
+            mute.isOn = volume == 0f;
+
+            OnChangeMuteToggle?.Invoke(volume);
         }
 
-        public void OnMusicVolumeChanged(float volume)
+        public void SetIsMuted()
         {
-            AudioManager.instance.SetMusicVolume(volume);
-            AudioSettings.SaveAudioSettings(volume, AudioManager.instance.GetSFXVolume(), AudioSettings.IsAudioMuted());
+            if (mute.isOn)
+            {
+                OnChangeMuteToggle?.Invoke(0f);
+                isMuted = true;
+                volume = 0f;
+            }
+            else
+            {
+                OnChangeMuteToggle?.Invoke(1f);
+                isMuted = false;
+                volume = 1f;
+            }
+
+            PlayerPrefs.SetFloat("volume", volume);
         }
 
-        public void OnSFXVolumeChanged(float volume)
+        public bool GetIsMuted()
         {
-            AudioManager.instance.SetSFXVolume(volume);
-            AudioSettings.SaveAudioSettings(AudioManager.instance.GetMusicVolume(), volume, AudioSettings.IsAudioMuted());
+            return isMuted;
         }
 
-        public void OnMuteToggle(bool isMuted)
+        public void SetVolume(float volume)
         {
-            AudioManager.instance.MuteAllAudio(isMuted);
-            AudioSettings.SaveAudioSettings(AudioManager.instance.GetMusicVolume(), AudioManager.instance.GetSFXVolume(), isMuted);
-        }
-
-        public void PlayButtonClickSFX(AudioClip sfxClip)
-        {
-            AudioManager.instance.PlayButtonClickSFX(sfxClip);
-        }
-
-        public void PlayLoseSFX(AudioClip sfxClip)
-        {
-            AudioManager.instance.PlayLoseSFX(sfxClip);
+            this.volume = volume;
         }
     }
 }
