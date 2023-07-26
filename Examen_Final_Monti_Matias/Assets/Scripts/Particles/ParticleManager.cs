@@ -7,6 +7,7 @@ public class ParticleManager : MonoBehaviour
     public static ParticleManager instance;
 
     [SerializeField] private GameObject shootParticlePrefab;
+    [SerializeField] private GameObject destroySphereParticlePrefab;
 
     private void Awake()
     {
@@ -23,6 +24,14 @@ public class ParticleManager : MonoBehaviour
         if (shootParticlePrefab != null)
         {
             Instantiate(shootParticlePrefab, position, Quaternion.identity);
+        }
+    }
+
+    public void PlayParticleDestroySphere(Vector3 position)
+    {
+        if (shootParticlePrefab != null)
+        {
+            Instantiate(destroySphereParticlePrefab, position, Quaternion.identity);
         }
     }
 }

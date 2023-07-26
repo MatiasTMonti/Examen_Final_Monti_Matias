@@ -6,7 +6,7 @@ namespace tankDefend
     {
         private void OnCollisionEnter(Collision collision)
         {
-            if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Terrain"))
+            if (collision.gameObject.CompareTag("Terrain"))
             {
                 Destroy(gameObject);
             }

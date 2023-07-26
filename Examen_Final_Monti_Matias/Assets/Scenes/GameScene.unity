@@ -2275,7 +2275,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1be4ebef223748498f2385ff7cd0176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootParticlePrefab: {fileID: 8842348963460834758, guid: 52223a3b2d777ad469a7dc22b040b012, type: 3}
+  shootParticlePrefab: {fileID: 100000, guid: 83cd9cc9f9c88824ba18dc59b05ae328, type: 3}
+  destroySphereParticlePrefab: {fileID: 1892078723244562, guid: 46876a2780737ec45a19d62f88e5ce56, type: 3}
 --- !u!4 &1586846285
 Transform:
   m_ObjectHideFlags: 0

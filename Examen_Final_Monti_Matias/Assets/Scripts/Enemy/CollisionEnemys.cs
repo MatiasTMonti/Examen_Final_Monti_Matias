@@ -17,6 +17,7 @@ namespace tankDefend
 
                 if (other.gameObject.CompareTag("Bullet"))
                 {
+                    ParticleManager.instance.PlayParticleDestroySphere(transform.position);
                     destroySphereCount.IncrementSpheresDestroyed();
                     Destroy(gameObject);
                 }

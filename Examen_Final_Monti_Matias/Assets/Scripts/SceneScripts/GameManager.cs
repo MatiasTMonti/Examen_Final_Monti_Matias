@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 namespace tankDefend
 {
@@ -29,6 +30,12 @@ namespace tankDefend
 
         private void ShowGameOverPanel()
         {
+            StartCoroutine(ShowGameOverCoroutine());
+        }
+
+        private IEnumerator ShowGameOverCoroutine()
+        {
+            yield return new WaitForSeconds(1f);
             gameOverScreen.SetActive(true);
             highScoreMetaData.SetActive(true);
             Time.timeScale = 0f;
