@@ -7,6 +7,7 @@ namespace tankDefend
         [SerializeField] private DestroySphereCount destroySphereCount;
         [SerializeField] private AudioSource impactBulletSFX;
         [SerializeField] private AudioSource impactSphereTankSFX;
+        [SerializeField] private GameManager gameManager;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -15,6 +16,7 @@ namespace tankDefend
                 if (other.gameObject.CompareTag("Tank"))
                 {
                     impactSphereTankSFX.Play();
+                    gameManager.OnGameOver.Invoke();
                     Destroy(other.gameObject);
                 }
 
