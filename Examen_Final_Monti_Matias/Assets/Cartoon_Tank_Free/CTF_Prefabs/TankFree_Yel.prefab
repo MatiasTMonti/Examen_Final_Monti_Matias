@@ -186,16 +186,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3411c5341e1c0274aa111155a7887420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementVelocity: 5
-  rotationVelocity: 10
+  movementVelocity: 7
+  rotationVelocity: 20
   turret: {fileID: 2461871828900276643}
   shootForce: 1000
   bulletPrefab: {fileID: 9094009511398482965, guid: ebc8ef3e1eaa76c44aacba4e5ec67bf4, type: 3}
-  wheels:
-  - {fileID: 930629993942300306}
-  - {fileID: 4743878250017468924}
-  - {fileID: 1403400136232414571}
-  - {fileID: 4224812733941447662}
 --- !u!54 &1263473598
 Rigidbody:
   m_ObjectHideFlags: 0
