@@ -15,6 +15,7 @@ namespace tankDefend
             {
                 if (other.gameObject.CompareTag("Tank"))
                 {
+                    ParticleManager.instance.PlayParticleDestroyTank(transform.position);
                     impactSphereTankSFX.Play();
                     gameManager.OnGameOver.Invoke();
                     Destroy(other.gameObject);
