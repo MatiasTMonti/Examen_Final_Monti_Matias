@@ -11,6 +11,8 @@ namespace tankDefend
         [SerializeField] private float shootForce = 1000f;
         [SerializeField] private GameObject bulletPrefab;
 
+        [SerializeField] private Transform[] wheels;
+
         private GameObject actualBullet;
 
         private Vector3 destino;
@@ -22,6 +24,8 @@ namespace tankDefend
             {
                 MoveInput();
                 RotationInput();
+
+                WheelRotation();
 
                 RotateTurret();
 
@@ -39,6 +43,16 @@ namespace tankDefend
         {
             float movimientoHorizontal = Input.GetAxis("Horizontal") * rotationVelocity * Time.deltaTime;
             transform.Rotate(Vector3.up * movimientoHorizontal);
+        }
+
+        private void WheelRotation()
+        {
+            float movimientoHorizontal = Input.GetAxis("Horizontal") * rotationVelocity * Time.deltaTime;
+
+            foreach (Transform wheel in wheels)
+            {
+                wheel.Rotate(Vector3.up, movimientoHorizontal);
+            }
         }
 
         private void RotateTurret()
