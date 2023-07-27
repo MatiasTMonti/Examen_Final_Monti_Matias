@@ -27,6 +27,14 @@ namespace tankDefend
             }
         }
 
+        public void OnPauseButtonClicked()
+        {
+            if (isGamePause)
+                ResumeGame();
+            else
+                PauseGame();
+        }
+
         public void ResumeGame()
         {
             isGamePause = false;
