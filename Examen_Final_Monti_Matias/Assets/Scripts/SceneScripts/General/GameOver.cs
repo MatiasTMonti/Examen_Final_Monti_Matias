@@ -11,6 +11,7 @@ namespace tankDefend
 
         [SerializeField] private HighScoreManager highScoreManager;
         [SerializeField] private DestroySphereCount destroySphereCount;
+        [SerializeField] private CountdownTimer countdown;
 
         private int destroyedSpheres;
 
@@ -19,7 +20,7 @@ namespace tankDefend
             destroyedSpheres = destroySphereCount.GetSpheresDestroyed();
             destroyedSpheresText.text = "Spheres Destroyed: " + destroyedSpheres;
 
-            highScoreManager.AddHighscore(destroyedSpheres);
+            highScoreManager.AddHighscore(destroyedSpheres, countdown.GetTime());
 
             ShowHighscores();
         }
@@ -28,13 +29,13 @@ namespace tankDefend
         {
             if (highScoreManager != null)
             {
-                List<int> highscores = highScoreManager.GetHighscores();
+                List<ScoreData> highscores = highScoreManager.GetHighscores();
 
                 string highscoreString = "Highscores: \n";
 
                 for (int i = 0; i < highscores.Count; i++)
                 {
-                    highscoreString += (i + 1) + ". " + highscores[i] + "\n";
+                    highscoreString += (i + 1) + ". " + highscores[i].score + " - Time: " + highscores[i].time.ToString("F2") + "s\n";
                 }
 
                 highscoreText.text = highscoreString;

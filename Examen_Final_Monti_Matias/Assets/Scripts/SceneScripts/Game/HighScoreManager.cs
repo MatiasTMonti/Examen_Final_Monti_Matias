@@ -7,7 +7,7 @@ namespace tankDefend
     public class HighScoreManager : MonoBehaviour
     {
         private string highScoreFile;
-        private List<int> highScores = new List<int>();
+        private List<ScoreData> highScores = new List<ScoreData>();
 
         private void OnEnable()
         {
@@ -23,9 +23,10 @@ namespace tankDefend
 
                 foreach (string line in lines)
                 {
-                    if (int.TryParse(line, out int score))
+                    string[] parts = line.Split(';');
+                    if (parts.Length == 2 && int.TryParse(parts[0], out int score) && float.TryParse(parts[1], out float time))
                     {
-                        highScores.Add(score);
+                        highScores.Add(new ScoreData { score = score, time = time });
                     }
                 }
             }
@@ -33,23 +34,24 @@ namespace tankDefend
 
         private void SaveHighScore()
         {
-            highScores.Sort((a, b) => b.CompareTo(a));
+            highScores.Sort((a, b) => b.score.CompareTo(a.score));
 
             while (highScores.Count > 3)
             {
                 highScores.RemoveAt(highScores.Count - 1);
             }
 
-            File.WriteAllLines(highScoreFile, highScores.ConvertAll(x => x.ToString()).ToArray());
+            string[] lines = highScores.ConvertAll(data => $"{data.score};{data.time}").ToArray();
+            File.WriteAllLines(highScoreFile, lines);
         }
 
-        public void AddHighscore(int score)
+        public void AddHighscore(int score, float time)
         {
-            highScores.Add(score);
+            highScores.Add(new ScoreData { score = score, time = time });
             SaveHighScore();
         }
 
-        public List<int> GetHighscores()
+        public List<ScoreData> GetHighscores()
         {
             return highScores;
         }

@@ -47,5 +47,10 @@ namespace tankDefend
             int seconds = Mathf.FloorToInt(currentTime % 60f);
             timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
+
+        public float GetTime()
+        {
+            return currentTime;
+        }
     }
 }
